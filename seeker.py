@@ -16,6 +16,7 @@ from os import path, kill
 from json import loads, decoder
 from packaging import version
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-k', '--kml', help='KML filename')
 parser.add_argument('-t', '--template', help='Add a template')
