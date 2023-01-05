@@ -18,6 +18,7 @@ from packaging import version
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-k', '--kml', help='KML filename')
+parser.add_argument('-t', '--template', help='Add a template')
 parser.add_argument('-p', '--port', type=int, default=8080, help='Web server port [ Default : 8080 ]')
 parser.add_argument('-u', '--update', action='store_true', help='Check for updates')
 parser.add_argument('-v', '--version', action='store_true', help='Prints version')
@@ -27,7 +28,7 @@ kml_fname = args.kml
 port = args.port
 chk_upd = args.update
 print_v = args.version
-
+template_name=args.template
 path_to_script = path.dirname(path.realpath(__file__))
 
 SITE = ''
@@ -95,7 +96,10 @@ def banner():
 	print(f'{G} |---> {C}Community : {W}{comms_url}')
 	print(f'{G}[>] {C}Version      : {W}{VERSION}\n')
 
-
+def template_add():
+ print(f'{Y}[!] Provide Template Data :{W}\n')
+ template_name = str(input(f'{G}[Template Name>] {W}')) 
+ pass
 def template_select(site):
 	print(f'{Y}[!] Select a Template :{W}\n')
 
