@@ -85,11 +85,17 @@ Available Templates :
 * Zoom (Made by @a7maadf)
 * Google reCAPTCHA (Made by @MrEgyptian)
 
+Create your own template ! 
+Steps to let you create your template is described in this [how-to](./createTemplate.md)
+
+Once your template is ready, **do not forget to propose it to the community via a PR (pull request)**
+
 ## Tested On :
 
 * Kali Linux
 * BlackArch Linux
 * Ubuntu
+* Fedora
 * Kali Nethunter
 * Termux
 * Parrot OS
@@ -97,7 +103,7 @@ Available Templates :
 
 ## Installation
 
-### Kali Linux / Arch Linux / Ubuntu / Parrot OS / Termux
+### Kali Linux / Arch Linux / Ubuntu / Fedora / Parrot OS / Termux
 
 ```bash
 git clone https://github.com/thewhiteh4t/seeker.git
@@ -137,14 +143,47 @@ ngrok http 8080
 ```bash
 python3 seeker.py -h
 
-usage: seeker.py [-h] [-k KML] [-p PORT] [-u] [-v]
+usage: seeker.py [-h] [-k KML] [-p PORT] [-u] [-v] [-t TEMPLATE] [-d] [--telegram token:chatId] [--webhook WEBHOOK]
 
 options:
-  -h, --help            show this help message and exit
-  -k KML, --kml KML     KML filename
-  -p PORT, --port PORT  Web server port [ Default : 8080 ]
-  -u, --update          Check for updates
-  -v, --version         Prints version
+  -h, --help                            show this help message and exit
+  -k KML, --kml KML                     KML filename
+  -p PORT, --port PORT                  Web server port [ Default : 8080 ]
+  -u, --update                          Check for updates
+  -v, --version                         Prints version
+  -t TEMPLATE, --template TEMPLATE      Auto choose the template with the given index
+  -d, --debugHTTP                       Disable auto http --> https redirection for testing purposes 
+                                        (only works for the templates having index_temp.html file)
+  --telegram                            Send info to a telegram bot, provide telegram token and chat to use
+                                        format = token:chatId separated by a colon
+  --webhook                             Send events to a webhook endpoint to be processed
+                                        Note : endpoint must be unauthenticated and accept POST request
+
+#########################
+# Environment Variables #
+#########################
+
+Some of the options above can also be enabled via environment variables, to ease deployment.
+Other parameters can be provided via environment variables to avoid interactive mode.
+
+Variables:
+  DEBUG_HTTP            Same as -d, --debugHTTP
+  PORT                  Same as -p, --port
+  TEMPLATE              Same as -t, --template
+  TITLE                 Provide the group title or the page title
+  REDIRECT              Provide the URL to redirect the user to, after the job is done
+  IMAGE                 Provide the image to use, can either be remote (http or https) or local
+                        Note : Remote image will be downloaded locally during the startup
+  DESC                  Provide the description of the item (group or webpage depending on the template)
+  SITENAME              Provide the name of the website
+  DISPLAY_URL           Provide the URL to display on the page
+  MEM_NUM               Provide the number of group membres (Telegram so far)
+  ONLINE_NUM            Provide the number of the group online members (Telegram so far)
+  TELEGRAM              Provide telegram token and chat to use to send info to a telegram bot
+                        format = token:chatId separated by a colon
+  WEBHOOK               Provide the webhook url to forward the events to 
+                        Note : endpoint should be unauthenticated and accept POST method
+                        
 
 ##################
 # Usage Examples #
@@ -166,6 +205,9 @@ $ python3 seeker.py -k <filename>
 # Use Custom Port
 $ python3 seeker.py -p 1337
 $ ./ngrok http 1337
+
+# Pre-select a specific template
+$ python3 seeker.py -t 1
 
 ################
 # Docker Usage #
@@ -192,6 +234,6 @@ as an alterntive to ngrok
 
 **YouTube**
 
-<a href="https://youtu.be/Q91cTFwIvLc">
-  <img src="https://i3.ytimg.com/vi/Q91cTFwIvLc/maxresdefault.jpg">
+<a href="https://odysee.com/@thewhiteh4t:2/seeker_v126_demo:e">
+  <img src="https://thumbnails.odycdn.com/optimize/s:1024:768/quality:85/plain/https://thumbs.odycdn.com/5ce9ed06e0ce8a995987dba0949dbc9a.webp">
 </a>
